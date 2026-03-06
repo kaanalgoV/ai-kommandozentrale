@@ -1,0 +1,19 @@
+# Secrets
+*.secret
+*.token
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Temp
+*.tmp
+*.bak
+
+# Research output (generated files)
+research_output/
