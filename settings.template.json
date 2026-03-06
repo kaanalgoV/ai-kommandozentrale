@@ -2,15 +2,21 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_FLOW_V3_ENABLED": "true",
-    "CLAUDE_FLOW_HOOKS_ENABLED": "true"
+    "CLAUDE_FLOW_HOOKS_ENABLED": "true",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
+  "attribution": {
+    "commit": "Co-Authored-By: claude-flow <ruv@ruv.net>",
+    "pr": "🤖 Generated with [claude-flow](https://github.com/ruvnet/claude-flow)"
   },
   "permissions": {
     "allow": [
       "Read",
-      "Glob",
-      "Grep",
       "Edit",
       "Write",
+      "MultiEdit",
+      "Glob",
+      "Grep",
       "Bash(cargo build*)",
       "Bash(cargo test*)",
       "Bash(cargo clippy*)",
@@ -52,14 +58,28 @@
       "Bash(export *)",
       "Bash(source *)",
       "Bash(cd *)",
-      "Bash(python*)",
-      "Bash(pip *)",
+      "Bash(sleep *)",
+      "Bash(kill *)",
+      "Bash(lsof *)",
+      "Bash(npx @claude-flow*)",
+      "Bash(npx claude-flow*)",
+      "Bash(node /Users/kaan_macbook/.claude/*)",
       "mcp__claude-flow__:*"
     ],
     "deny": [
       "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf $HOME)",
       "Bash(git push --force main)",
-      "Bash(git push --force master)"
+      "Bash(git push --force master)",
+      "Bash(git push -f main)",
+      "Bash(git push -f master)",
+      "Bash(git reset --hard origin/main)",
+      "Bash(git reset --hard origin/master)",
+      "Bash(chmod -R 777 /)",
+      "Bash(mkfs*)",
+      "Bash(dd if=*)"
     ]
   },
   "hooks": {
@@ -69,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs pre-bash",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs pre-bash",
             "timeout": 5000
           }
         ]
@@ -81,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs post-edit",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs post-edit",
             "timeout": 10000
           }
         ]
@@ -92,7 +112,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs route",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs route",
             "timeout": 10000
           }
         ]
@@ -103,12 +123,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs session-restore",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs session-restore",
             "timeout": 15000
           },
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/auto-memory-hook.mjs import",
+            "command": "node /Users/kaan_macbook/.claude/helpers/auto-memory-hook.mjs import",
             "timeout": 8000
           }
         ]
@@ -119,7 +139,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs session-end",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs session-end",
             "timeout": 10000
           }
         ]
@@ -130,7 +150,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/auto-memory-hook.mjs sync",
+            "command": "node /Users/kaan_macbook/.claude/helpers/auto-memory-hook.mjs sync",
             "timeout": 10000
           }
         ]
@@ -142,11 +162,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs compact-manual"
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs compact-manual",
+            "timeout": 5000
           },
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs session-end",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs session-end",
             "timeout": 5000
           }
         ]
@@ -156,11 +177,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs compact-auto"
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs compact-auto",
+            "timeout": 5000
           },
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs session-end",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs session-end",
             "timeout": 6000
           }
         ]
@@ -171,28 +193,36 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $HOME/.claude/helpers/hook-handler.cjs status",
+            "command": "node /Users/kaan_macbook/.claude/helpers/hook-handler.cjs status",
             "timeout": 3000
           }
         ]
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "node /Users/kaan_macbook/.claude/helpers/statusline.cjs"
+  },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "github@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "playwright@claude-plugins-official": true
   },
   "language": "deutsch",
   "mcpServers": {
-    "_COMMENT": "Fuege hier deine MCP-Server mit API-Keys ein",
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@context7/mcp-server"]
+    "travis": {
+      "url": "https://travis-mcp.traivend.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <YOUR_TRAVIS_TOKEN>"
+      }
     }
   },
   "claudeFlow": {
@@ -212,24 +242,116 @@
         "trainPatternsOnComplete": true,
         "notifyLeadOnComplete": true,
         "sharedMemoryNamespace": "agent-teams"
+      },
+      "hooks": {
+        "teammateIdle": {
+          "enabled": true,
+          "autoAssign": true,
+          "checkTaskList": true
+        },
+        "taskCompleted": {
+          "enabled": true,
+          "trainPatterns": true,
+          "notifyLead": true
+        }
       }
+    },
+    "swarm": {
+      "topology": "hierarchical-mesh",
+      "maxAgents": 50
     },
     "memory": {
       "backend": "hybrid",
       "enableHNSW": true,
-      "learningBridge": { "enabled": true },
-      "memoryGraph": { "enabled": true },
-      "agentScopes": { "enabled": true }
+      "learningBridge": {
+        "enabled": true
+      },
+      "memoryGraph": {
+        "enabled": true
+      },
+      "agentScopes": {
+        "enabled": true
+      }
+    },
+    "neural": {
+      "enabled": true
+    },
+    "daemon": {
+      "autoStart": true,
+      "workers": [
+        "map",
+        "audit",
+        "optimize",
+        "consolidate",
+        "testgaps",
+        "ultralearn",
+        "deepdive",
+        "document",
+        "refactor",
+        "benchmark"
+      ],
+      "schedules": {
+        "audit": {
+          "interval": "1h",
+          "priority": "critical"
+        },
+        "optimize": {
+          "interval": "30m",
+          "priority": "high"
+        },
+        "consolidate": {
+          "interval": "2h",
+          "priority": "low"
+        },
+        "document": {
+          "interval": "1h",
+          "priority": "normal",
+          "triggers": [
+            "adr-update",
+            "api-change"
+          ]
+        },
+        "deepdive": {
+          "interval": "4h",
+          "priority": "normal",
+          "triggers": [
+            "complex-change"
+          ]
+        },
+        "ultralearn": {
+          "interval": "1h",
+          "priority": "normal"
+        }
+      }
     },
     "learning": {
       "enabled": true,
       "autoTrain": true,
-      "patterns": ["coordination", "optimization", "prediction"]
+      "patterns": [
+        "coordination",
+        "optimization",
+        "prediction"
+      ],
+      "retention": {
+        "shortTerm": "24h",
+        "longTerm": "30d"
+      }
+    },
+    "adr": {
+      "autoGenerate": true,
+      "directory": "/docs/adr",
+      "template": "madr"
+    },
+    "ddd": {
+      "trackDomains": true,
+      "validateBoundedContexts": true,
+      "directory": "/docs/ddd"
     },
     "security": {
       "autoScan": true,
       "scanOnEdit": true,
-      "cveCheck": true
+      "cveCheck": true,
+      "threatModel": true
     }
   },
   "effortLevel": "high"

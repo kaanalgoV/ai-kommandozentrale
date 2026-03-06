@@ -10,11 +10,11 @@ Antworte immer auf Deutsch. Technische Begriffe und Code bleiben auf Englisch.
 - Komplexe Multi-File-Features -> Agent Team starten
 - Einfache Einzelaufgaben -> Direkt ausfuehren
 
-## Code Style
-- TypeScript/JavaScript: ESM imports, strict mode, keine any-Types
-- Rust: clippy-clean, cargo fmt, idiomatic error handling mit Result<T, E>
-- Python: Type hints, f-strings, pathlib statt os.path
-- Alle Sprachen: Beschreibende Variablennamen, keine Abkuerzungen
+## Subagent-Strategie
+- Planung, Architektur, komplexe Entscheidungen: Immer Opus (Hauptsession)
+- Fokussierte Einzel-Tasks (Dateien lesen, Tests laufen, Grep, einfache Edits): Sonnet (via CLAUDE_CODE_SUBAGENT_MODEL)
+- Subagents ohne explizites model-Feld nutzen automatisch Sonnet
+- Agents die explizit model: opus oder model: inherit setzen, bleiben auf Opus
 
 ## Workflow
 - Immer zuerst lesen und verstehen, dann aendern
@@ -31,7 +31,6 @@ Antworte immer auf Deutsch. Technische Begriffe und Code bleiben auf Englisch.
 ## Qualitaet
 - Kein Code ohne Tests deployen
 - Security: OWASP Top 10 beachten, keine Secrets in Code
-- Performance: Lazy Loading, keine unnoetige N+1 Queries
 - Error Handling: Graceful degradation, keine swallowed errors
 
 ## Skills
@@ -39,7 +38,3 @@ Antworte immer auf Deutsch. Technische Begriffe und Code bleiben auf Englisch.
 - Fuer AI/ML-Research: Orchestra Research Skills nutzen
 - Fuer kreative Ideenfindung: brainstorming-research-ideas
 - Fuer Code Reviews: code-review Skill
-
-## Subagent-Modell
-- Hauptsession: Opus (komplexes Reasoning)
-- Subagents: Sonnet (fokussierte Tasks, kosteneffizient)

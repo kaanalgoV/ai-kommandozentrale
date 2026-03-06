@@ -3,6 +3,7 @@
 *.token
 .env
 .env.local
+settings-reference.json
 
 # OS
 .DS_Store
